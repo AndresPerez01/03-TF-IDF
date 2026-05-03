@@ -1,8 +1,5 @@
 # 03-TF-IDF: Motor de Búsqueda con Modelo Vectorial
 
-Este repositorio contiene la implementación en Python de un motor de recuperación de información a pequeña escala. El proyecto demuestra cómo una computadora, que no entiende el significado real de las palabras, puede buscar y rankear documentos transformando textos en geometría y calculando ángulos espaciales mediante el **Modelo Vectorial** y la ponderación **TF-IDF**.
-
-
 ## El Concepto Central: Los Dos Universos Paralelos
 
 El código no mezcla los datos. Se divide estratégicamente en dos fases o "universos espaciales" independientes para demostrar el funcionamiento del algoritmo:
@@ -34,7 +31,7 @@ Para crear el corpus principal, el script se conecta automatizadamente a la bibl
 
 ### Paso 3: Construcción del Espacio Vectorial Principal
 
-Aquí ocurre la magia matemática real. Creamos una nueva fábrica de vectores, totalmente en blanco, para procesar los 1000 libros.
+Se crea una nueva fábrica de vectores, totalmente en blanco, para procesar los 1000 libros.
 
 ```python
 vectorizer_gutenberg = TfidfVectorizer(stop_words='english', max_features=10000)
