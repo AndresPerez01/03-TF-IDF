@@ -12,7 +12,7 @@ El código no mezcla los datos. Se divide estratégicamente en dos fases o "univ
 
 ### Paso 1: El Entorno de Pruebas (Corpus de Turismo)
 
-Leemos un archivo local pequeño con oraciones sobre turismo en Ecuador. Aquí instanciamos nuestra primera "fábrica de vectores" (`TfidfVectorizer`).
+Lee un archivo local pequeño con oraciones sobre turismo en Ecuador. Aquí se instacia la primera "fábrica de vectores" (`TfidfVectorizer`).
 
 ```python
 vectorizer_turismo = TfidfVectorizer()
@@ -51,7 +51,7 @@ $$idf_{t} = \log\left(\frac{N}{df_{t}}\right)$$
 
 ### Paso 4: El Motor de Búsqueda y la Similitud del Coseno
 
-Para buscar información (ej. `"science fiction adventure"`), debemos introducir la consulta del usuario al universo que acabamos de crear en el Paso 3.
+Para buscar información (ej. `"science fiction adventure"`), se debe introducir la consulta del usuario al universo que se creó en el Paso 3.
 
 ```python
 # OJO: Se usa transform(), no fit_transform()
