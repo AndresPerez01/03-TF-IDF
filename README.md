@@ -2,18 +2,16 @@
 
 Este repositorio contiene la implementación en Python de un motor de recuperación de información a pequeña escala. El proyecto demuestra cómo una computadora, que no entiende el significado real de las palabras, puede buscar y rankear documentos transformando textos en geometría y calculando ángulos espaciales mediante el **Modelo Vectorial** y la ponderación **TF-IDF**.
 
----
 
-## 🧠 El Concepto Central: Los Dos Universos Paralelos
+## El Concepto Central: Los Dos Universos Paralelos
 
 El código no mezcla los datos. Se divide estratégicamente en dos fases o "universos espaciales" independientes para demostrar el funcionamiento del algoritmo:
 
 1. **El Entorno de Pruebas (Corpus de Turismo):** Un corpus pequeño y controlado para verificar la correcta instanciación del modelo y limpieza de texto.
 2. **El Desafío Real (Corpus Gutenberg):** Un escenario de *Big Data* donde el sistema descarga, procesa y rankea 1000 libros reales en inglés.
 
----
 
-## ⚙️ Arquitectura y Flujo del Código
+## Arquitectura y Flujo del Código
 
 ### Paso 1: El Entorno de Pruebas (Corpus de Turismo)
 
@@ -66,7 +64,7 @@ vector_consulta = vectorizer.transform([consulta])
 similitudes = cosine_similarity(vector_consulta, matriz_tfidf).flatten()
 ```
 
-> **Regla de oro:** Aquí usamos estrictamente `transform()`. Esto obliga a la nueva consulta a empaquetarse y obedecer las dimensiones y pesos históricos que los libros ya establecieron. Si usáramos `fit_transform()` por error, el sistema olvidaría los libros, crearía un universo de solo 3 dimensiones basado en la consulta y el programa colapsaría matemáticamente.
+> **Cambio Principal** Aquí usamos estrictamente `transform()`. Esto obliga a la nueva consulta a empaquetarse y obedecer las dimensiones y pesos históricos que los libros ya establecieron. Si usáramos `fit_transform()` por error, el sistema olvidaría los libros, crearía un universo de solo 3 dimensiones basado en la consulta y el programa colapsaría matemáticamente.
 
 Con la consulta convertida en un vector ($\vec{q}$), rankeamos los resultados usando la **Similitud del Coseno**:
 
@@ -76,7 +74,7 @@ En lugar de contar palabras repetidas, el sistema mide el ángulo entre la flech
 
 ---
 
-## 🚀 Ejecución Dinámica y Portabilidad
+## Ejecución Principal
 
 El bloque final `__main__` utiliza la librería nativa `os` de Python para construir rutas de archivos dinámicas (`os.path.join`).
 
