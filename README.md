@@ -1,5 +1,7 @@
 # 03-TF-IDF: Motor de Búsqueda con Modelo Vectorial
 
+###Autor: Pérez Pineda Andrés Alejandro
+
 ## El Concepto Central: Los Dos Universos Paralelos
 
 El código no mezcla los datos. Se divide estratégicamente en dos fases o "universos espaciales" independientes para demostrar el funcionamiento del algoritmo:
