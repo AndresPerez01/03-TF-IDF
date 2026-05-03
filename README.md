@@ -21,13 +21,11 @@ matriz_tfidf_turismo = vectorizer_turismo.fit_transform(corpus_turismo)
 
 Al ejecutar `fit_transform()`, el modelo aprende un diccionario pequeño (116 palabras) y crea una matriz matemática. Esta matriz aplica la fórmula TF-IDF, calculando la frecuencia de una palabra en una oración (TF) y multiplicándola por su rareza en todo el documento (IDF). Tras esto, este "universo" se cierra y no interfiere con el resto del código.
 
----
 
 ### Paso 2: Extracción de Datos Masivos (Web Scraping)
 
 Para crear el corpus principal, el script se conecta automatizadamente a la biblioteca digital **Project Gutenberg** utilizando la librería `requests`. Descarga 1000 libros en formato de texto plano (`.txt`) y los almacena en el disco duro local, gestionando pausas para no saturar el servidor.
 
----
 
 ### Paso 3: Construcción del Espacio Vectorial Principal
 
@@ -47,7 +45,7 @@ $$idf_{t} = \log\left(\frac{N}{df_{t}}\right)$$
 
 - **El Mapa:** Ubica cada libro como una flecha estática ($\vec{d}$) dentro de esta matriz de 1000 filas por 10,000 columnas.
 
----
+
 
 ### Paso 4: El Motor de Búsqueda y la Similitud del Coseno
 
@@ -69,7 +67,15 @@ $$sim(\vec{q}, \vec{d}) = \frac{\vec{q} \cdot \vec{d}}{||\vec{q}|| \cdot ||\vec{
 
 En lugar de contar palabras repetidas, el sistema mide el ángulo entre la flecha de tu búsqueda y las flechas de los 1000 libros. Si un libro trata sobre esos temas, su flecha apuntará en la misma dirección, logrando un puntaje de similitud más cercano a `1`.
 
----
+### La Normalización y la Longitud del Documento
+ 
+En una versión anterior, el código leía solo los primeros 5,000 caracteres de cada libro. Eso significaba comparar una consulta de 3 palabras contra "libritos" de apenas ~800 palabras. Utilizando la línea de código `f.read(5000)`. 
+ 
+Al cambiar el código para leer los libros **completos** con `f.read()`, se compara esa misma consulta contra novelas gigantescas de, por ejemplo, 100,000 palabras. Para evitar que los libros muy largos dominen a los cortos simplemente por tener más texto, el Modelo Vectorial aplica una técnica llamada **Normalización de la Magnitud** al calcular el Coseno:
+ 
+$$sim(\vec{q},\vec{d})=\frac{\vec{q}\cdot\vec{d}}{||\vec{q}||\cdot||\vec{d}||}$$
+ 
+El divisor $||\vec{d}||$ representa la "longitud" geométrica del libro. Cuando se lee un libro entero, esa magnitud se convierte en un número gigantesco. Al dividir por un valor tan grande, el puntaje de similitud final se **diluye** y se vuelve mucho más pequeño, pudiendo caer hasta valores como `0.09`. Esto es el comportamiento esperado y correcto del modelo: está comparando de forma justa sin importar el tamaño del documento.
 
 ## Ejecución Principal
 
