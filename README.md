@@ -1,6 +1,6 @@
 # 03-TF-IDF: Motor de Búsqueda con Modelo Vectorial
 
-###Autor: Pérez Pineda Andrés Alejandro
+Autor: Pérez Pineda Andrés Alejandro
 
 ## El Concepto Central: Los Dos Universos Paralelos
 
